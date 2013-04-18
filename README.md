@@ -1,7 +1,7 @@
 dotfiles
 ========
 
-My Dotfiles
+My dotfiles for:
 
-vim
----
+  * vim
+  * tmux
