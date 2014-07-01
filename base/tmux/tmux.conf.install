@@ -1,1 +1,2 @@
+#!/bin/bash
 ln -s /home/twebb/.config/tmux/tmux.conf /home/twebb/.tmux.conf
