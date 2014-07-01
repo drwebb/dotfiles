@@ -48,5 +48,7 @@ export PATH=/home/twebb/bin:/home/twebb/.cabal/bin:$PATH
 #ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 #ZSH_HIGHLIGHT_STYLES[cursor]='bg=red,fg=green'
 
-tmx twebb
+if [[ ! -o login ]]; then;
+  tmx twebb
+fi
 # Customize to your needs...
