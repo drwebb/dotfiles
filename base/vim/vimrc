@@ -1,0 +1,216 @@
+"VUNDLE
+set rtp=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after,/usr/share/vim
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+"Bundle 'Shougo/neocomplcache'
+"Bundle 'Shougo/neosnippet'
+
+"Bundle 'Shougo/vimproc'
+"Bundle 'ervandew/supertab'
+"Bundle 'nixternal/taskwarrior-vim'
+"My Plugins
+Bundle 'colemakmin'
+
+""External plugins
+
+Bundle 'myusuf3/numbers.vim'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'eagletmt/ghcmod-vim'
+"Bundle 'epeli/slimux'
+Bundle 'kien/ctrlp.vim'
+Bundle 'chriskempson/base16-vim'
+"Bundle 'klen/python-mode'
+Bundle 'ledger.vim'
+"Bundle 'lukerandall/haskellmode-vim'
+Bundle 'majutsushi/tagbar'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/syntastic'
+Bundle 'sjl/gundo.vim'
+Bundle 'tpope/vim-fugitive'
+"Bundle 'tpope/vim-dispatch'
+"Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+"Bundle 'ujihisa/neco-ghc'
+Bundle 'w0ng/vim-hybrid'
+"Bundle 'Valloric/YouCompleteMe'
+"Bundle 'davidhalter/jedi-vim'
+Bundle 'SirVer/ultisnips'
+Bundle 'kana/vim-altr'
+Bundle 'mattn/zencoding-vim'
+
+filetype plugin indent on
+
+syntax enable
+
+"MAPPINGS
+
+"" Command shortcuts
+cmap w!! w !sudo tee % >/dev/null
+cmap cwd lcd %:p:h
+cmap cd. lcd %:p:h
+
+"" Easy buffer switching
+noremap <f1> :bprev<CR>
+noremap <f2> :bnext<CR>
+noremap <f9> :Make<CR>
+
+"" Fast window jumps
+noremap <C-W>n <C-W>h
+noremap <C-W>h <C-W>n
+noremap <C-W>e <C-W>j
+noremap <C-W>i <C-W>k
+noremap <C-W>o <C-W>l
+noremap <C-W>l <C-W>o
+noremap <C-N> <C-W>h
+noremap <C-E> <C-W>j
+noremap <C-I> <C-W>k
+noremap <C-O> <C-W>l
+noremap <C-J> <C-O>
+noremap <C-K> <C-I>
+
+"CTR-L removes search highlight
+nnoremap <silent> <C-l> :nohl<CR><C-l>
+
+"let g:UltiSnipsExpandTrigger="<C-J>"
+"Fast config file jumps
+nm ,v :e ~/.vimrc <CR>
+nm ,x :e ~/.xinitrc <CR>
+nm ,s :so ~/.vimrc <CR>
+
+" visual shifting (does not exit Visual mode)
+vnoremap < <gv
+vnoremap > >gv
+
+" leader maps
+
+"" Slimux
+noremap <leader>a :SlimuxShellLast<CR>
+noremap <leader>l :SlimuxREPLSendLine <CR>
+noremap <leader>r :SlimuxREPLSendSelection <CR>
+
+
+"" CTRL P
+noremap <leader><C-T> :CtrlPTag <CR>
+noremap <leader><C-B> :CtrlPBuffer <CR>
+noremap <leader><C-M> :CtrlPMRU <CR>
+
+"" GHC Mod
+noremap <leader>ht :GhcModType <CR>
+noremap <leader>hi :GhcModInfo <CR>
+noremap <leader>he :GhcModExpand <CR>
+noremap <leader>hk :GhcModTypeInsert <CR>
+noremap <leader>hp :%!stylish-haskell <CR>
+
+""" Numbers
+noremap <leader> :NumbersToggle <CR>
+
+"SETTINGS
+set shortmess+=filmnrxoOtT
+set showmode
+set autoread
+set modeline
+set backspace=2
+set scrolloff=3
+set scrolljump=5
+set completeopt=longest,menuone,preview
+set foldmethod=syntax
+set foldlevelstart=99
+set hidden
+set history=1000
+set hlsearch
+set ignorecase " lower matches upper in search
+set incsearch "Incremental Search
+set laststatus=2 "Always show status line
+set mouse=a "use mouse
+set nocp
+set nosmartindent
+set number "line numbers
+"set showbreak=↪ "Line break character
+set smartcase
+set t_Co=256
+set wildignore+=*/.git/*,*/.hg*/,*/.svn/*,*.pyc
+set wildmenu
+set wildmode=list:longest,full
+set wildchar=<Tab>
+set whichwrap=b,s,h,l,<,>,[,]
+set wrap                      " wrap long lines
+set linebreak
+set autoindent                  " indent at the same level of the previous line
+set shiftwidth=4                " use indents of 4 spaces
+set expandtab                   " tabs are spaces, not tabs
+set tabstop=4                   " an indentation every four columns
+set smarttab
+set softtabstop=4               " let backspace delete indent
+set textwidth=80
+set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
+" Remove trailing whitespaces and ^M chars
+autocmd FileType * autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+set omnifunc=necoghc#omnifunc
+
+set backup                      " backups are nice ...
+if has('persistent_undo')
+    set undofile                "so is persistent undo ...
+    set undolevels=4000         "maximum number of changes that can be undone
+    set undoreload=40000        "maximum number lines to save for undo on a buffer reload
+endif
+
+
+
+"AUTOCOMMANDS
+"au BufWinLeave * silent! mkview  "make vim save view (state) (folds, cursor, etc)
+"au BufWinEnter * silent! loadview "make vim load view (state) (folds, cursor, etc)
+"" LaTeX
+let g:tex_flavor = "latex"
+
+"" GHCMod
+"autocmd BufWritePost *.hs call s:check_and_lint()
+"function! s:check_and_lint()
+    "let l:qflist = ghcmod#make('check')
+    "call extend(l:qflist, ghcmod#make('lint'))
+    "call setqflist(l:qflist)
+    "cwindow
+    "if empty(l:qflist)
+        "echo "No errors found"
+    "endif
+"endfunction
+
+
+"SNIPPETS
+"let g:snippets_dir="/home/twebb/.vim/bundle/snipmate-snippets/snippets/"
+let g:UltiSnipsSnippetsDir="/home/twebb/.vim/bundle/ultisnips/UltiSnips/"
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+"let g:neocomplcache_snippets_dir="/home/twebb/.vim/bundle/snipmate-snippets/snippets/"
+
+"let g:neosnippet#enable_snipmate_compatibility=1
+"" Plugin key-mappings.
+"imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+
+
+" For snippet_complete marker.
+"if has('conceal')
+      "set conceallevel=2 concealcursor=i
+  "endif
+
+"CUSTOM
+
+let g:tagbar_width = 30
+let g:UltiSnipsUsePythonVersion = 2
+" GHCMod
+let g:haddock_browser="/usr/bin/firefox"
+let g:necoghc_enable_detailed_browse = 1
+nmap <F5> <Plug>(altr-forward)
+nmap <S-F5> <Plug>(altr-back)
+" colorscheme
+let g:hybrid_use_Xresources = 1
+colorscheme hybrid
+" colorscheme base16-londontube
+set bg=dark
+
+" ECLIM
+let g:EclimCompletionMethod = 'omnifunc'

@@ -1,0 +1,45 @@
+!! Fonts
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintslight
+Xft.hinting: 1
+Xft.antialias: 0
+Xft.rgba: rgb
+Xft.dpi:       96
+
+!!Xmursor.theme: ArchCursorBlue-26px
+
+!! URxvt*font:   -*-terminus-medium-*-*-*-18-*-*-*-*-*-*-*
+URxvt*font:   xft:DejaVu Sans Mono:size=14
+URxvt*boldFont:   xft:DejaVu Sans Mono:size=14
+!URxvt*font:   xft:Droid Sans Mono:style=Regular:size=18
+!URxvt*boldFont: xft:Droid Sans Mono:style=Regular:size=18
+!!URxvt*boldFont:   xft:Inconsolatazi4-Regular:size=14
+!! URxvt*boldFont:
+URxvt*intensityStyles: false
+!URxvt*font:  -*-terminusmodx-medium-*-*-*-12-*-*-*-*-*-*-*
+!!URxvt*font:  -*-terminesspowerline-medium-*-*-*-18-*-*-*-*-*-*-*
+!!URxvt*font:     xft:Terminus-Powerline:pixelsize=8
+!!URxvt.perl-ext-common: default,keyboard-select,url-select,clipboard
+!!URxvt.perl-ext-common: default,url-select
+
+!!URxvt.keysym.M-i: perl:keyboard-select:activate
+X48*smallLabelFont: -*-terminus-medium-*-*-*-18-*-*-*-*-*-*-*
+X48*mediumLabelFont: -*-terminus-medium-*-*-*-18-*-*-*-*-*-*-*
+X48*largeLabelFont: -*-terminus-medium-*-*-*-18-*-*-*-*-*-*-*
+X48*connectionFont: -*-terminus-medium-*-*-*-18-*-*-*-*-*-*-*
+
+!!URxvt.keysym.M-n: perl:keyboard-select:search
+URxvt.buffered: false
+
+!!URxvt.keysym.M-f: perl:url-select:select_next
+!!URxvt.urlLauncher: firefox
+
+!!URxvt.keysym.M-c:   perl:clipboard:copy
+!!URxvt.keysym.M-p:   perl:clipboard:paste
+!!URxvt.keysym.M-C-p: perl:clipboard:paste_escaped
+!!URxvt.keysym.Control-i:
+URxvt*termName: xterm
+URxvt*saveLines: 8100
+URxvt*scrollBar: false
+
